@@ -1,0 +1,214 @@
+*************************************************** POSIBLES TECNOLOGÍAS A USAR ***************************************************
+
+- BACK:
+	- BACKENDLESS
+	- FIREBASE
+
+- FRONT:
+	- NUXT.JS (VUE.JS) PARA LAS VISTAS/COMPONENTES 
+	- VUETIFY PARA DAR ESTILO A LA PAGINA
+
+ARQUITECTURA VUEX
+
+**********************************************************************************************************************************
+
+************************************************* PASOS PARA CREAR PROYECTO NUXT *************************************************
+
+1. Instalar vue-cli: npm install -g vue-cli
+2. instalar template predefinido: vue init nuxt-community/starter-template <nombre-proyecto>
+   instalar template predefinido con vuetifyjs: vue init vuetifyjs/nuxt <nombre-proyecto>
+3. instalar dependencias: cd <nombre-proyecto>  npm install
+4. lanzar proyecto: npm run dev
+
+URL INFO: https://github.com/i62navpm/Tutorial-Nuxt#guide-instalacion
+
+**********************************************************************************************************************************
+
+************************************************* CORREO DONDE EXPLICA CADA COSA *************************************************
+
+Sobre la parte de front-end
+Nuxt nos permitirá generar aplicaciones estáticas, que se puedan
+distribuir en la mayoría de los sistemas de distribución
+contenidos, sin necesidad de contar con un servidor que genere las
+páginas web.
+
+https://nuxtjs.org/guide
+
+Nuxt se basa en VUE, y también proporciona una forma de organizar
+nuestro código. En VUE todo son componentes, aunque en NUXT
+distinguimos entre los componentes reutilizables (directorio
+componentes), las páginas (directorio pages), y los distintos
+layouts de la aplicación (layouts)
+
+https://nuxtjs.org/guide/directory-structure
+
+Los componentes de VUE los escribiremos en un fichero .vue, donde
+tendremos declarada la vista (template), y el controlador (como
+script). También se pueden asignar estilos personalizados a los
+componentes (style).
+
+https://vuejs.org/v2/guide/single-file-components.html
+
+En el siguiente enlace puedes encontrar más información sobre los
+componentes VUE. Ten en cuenta que algunos ejemplos no están en
+formato de archivo .vue, pero es fácil adaptarlos al formato .vue
+que usaremos en el proyecto Nuxt.
+
+También encontrarás información sobre como estructurar los
+componentes, crear propiedades, y pasar valores a los componentes o
+escuchar los eventos que produzcan.
+
+https://vuejs.org/v2/guide/components.html
+
+Nuxt se encarga de generar automáticamente las rutas para enlazar
+las distintas páginas de la aplicación. Puedes encontrar más
+información al respecto en:
+
+https://nuxtjs.org/guide/routing
+
+En VUE podemos usar cualquier elemento html para diseñar nuestra
+interfaz de usuario. Sin embargo es más productivo usar una
+librería de widgets ya creada.
+
+Para este proyecto la librería recomendada es Vuetify. Podrásencontrar toda la documentación, así como los ejemplos de uso de
+cada widget en la siguiente página web:
+
+https://vuetifyjs.com/en/components/api-explorer
+
+
+Los componentes VUE pueden tener variables, métodos, etc. Sin
+embargo, la información se pierde cuando se pasa de una página a
+otra. Para evitar este problema podemos usar VUEX. Este módulo
+permite que creemos modelos de datos compartidos entre las
+distintas páginas.
+
+https://nuxtjs.org/guide/vuex-store
+
+https://vuex.vuejs.org/
+
+La acceso y modificación de los datos es un poco más complejo que
+con los datos que están en el propio componente Vue, aunque hay una
+serie de utilidades (mapGetters, mapState, mapMutations y
+mapActions), que nos facilitarán la integración entre VUEX y los
+componentes, de forma que podamos acceder al modelo que tenemos en
+VUEX como si fuese local al componente.
+
+https://vuex.vuejs.org/guide/state.html
+Para backend:
+Existen varias soluciones que nos permiten una gran escalabilidad
+en el lado servidor.
+
+En este proyecto usaremos una arquitectura backendless. Esto no
+significa que no tengamos backend, sino que usaremos uno
+proporcionado por el proveedor de servicios, con el que
+comunicaremos directamente desde los clientes, sin necesidad de
+desarrollar una capa intermedia (Endpoints)
+
+Esto se consigue en gran parte gracias a que podemos configurar el
+acceso a los recursos y permisos con un sistema de reglas, adaptado
+a nuestro proyecto.
+
+Los servicios que utilizaremos son los siguientes:
+
+* Cloud Firestore. Es una base de datos NO-SQL con actualizaciones
+   en tiempo real:
+
+https://firebase.google.com/docs/firestore/
+
+Para acceder a la base de datos lanzaremos acciones de VUEX, que
+después modificarán el estado con el resultado. Las vistas escuchan
+los cambios en el estado, por lo que el usuario puede seguir
+trabajando mientras los datos se actualizan o descargan.
+
+* Firebase AUTH. Este servicio nos permite delegar a firebase la
+   gestión y autenticación de los  usuarios.
+
+https://firebase.google.com/docs/auth/web/firebaseui
+
+En el enlace anterior puedes encontrar información sobre como crear
+la página de login. En este caso es necesario adaptar el ejemplo anuestro sistema, y mover la lógica o el estado a VUEX. El widget de
+autenticación se puede añadir a un componente o página de VUE.
+
+Para simplificar, en nuestra aplicación podremos limitarnos a 
+configurar la autenticación con Google.
+
+* Firebase Storage
+
+También vamos a necesitar un servicio de archivos. Firebase Storage
+permite subir o descargar archivos desde el propio cliente.
+
+https://firebase.google.com/docs/storage/web/start
+
+* Functions
+
+Aunque estamos siguiendo una arquitectura backend-less, es posible
+que necesitemos ejecutar parte de la lógica de la aplicación en el
+lado servidor. Para ello podemos alojar pequeñas funciones
+javascript, que se ejecutan bajo demanda, o automáticamente antes
+distintos sucesos.
+
+Puesto que las funciones en cloud se pueden ejecutar en distintos
+centros de datos, hemos de asociarlos a una zona cercana a la zona
+donde estén los usuarios y/o los datos.
+
+También es importante que las funciones sean idempotentes, ya que a
+veces pueden ejecutarse más de una vez antes el mismo evento,
+debido por ejemplo a problemas temporales con la red, etc.
+
+https://firebase.google.com/docs/functions/get-started
+
+* Hosting
+
+Por último, necesitaremos un servicio de Hosting para nuestro sitio
+web estático. Lo más sencillo es usar el que tenemos disponible en
+firebase.
+
+https://firebase.google.com/docs/hosting/quickstart
+También hay algunas recopilaciones interesantes mantenidas por la comunidad:
+
+https://github.com/nuxt-community/awesome-nuxt
+
+https://github.com/vuejs/awesome-vue
+
+OTRO PROYECTO SIMILAR A LO QUE QUIERO HACER: https://github.com/cosmicjs/vue-ecommerce
+
+**********************************************************************************************************************************
+
+************************************************************** TFG ***************************************************************
+
+PLANNING ESTA TARDE: 
+	- Hacer un analisis de requisitos?
+	- LLevar un tablero con las tareas a realizar?
+	- Revisar nuxt (al menos hacerme un esquema/resumen de la estrucutra)
+	- Intentar hacer una primera pagina con un hola mundo aunque sea
+
+IDEAS GENERALES:
+	- Zona para administradores (autonomos/jefes de la empresa)
+		- Login/Logout
+		- Gestión de empleados (añadir, eliminar, modificar) ??
+		- Gestión de usuarios (bloquear usuarios, visualizar compras)
+		- Gestión de articulos (añadir, eliminar, modificar)
+		- Gestión de formas de envio (añadir, eliminar, modificar)
+	- Zona Tienda 
+		- Registro de usuario
+		- Login/Logout
+		- Visualizar Articulos
+		- Pestaña de información de la tienda
+		- Busqueda de Articulos
+		- Ordenación de articulos (precio, nombre, tipo)
+		- Pasarela de pago externa
+		- Carrito de la compra
+		- Pestaña independiente con articulo incluyendo información mas detallada,
+		  opiniones, calificaciones
+		- Inlcuir opciones de gastos de envío.
+
+DUDAS PARA TUTORIA: 
+	- Registro de una empresa: Pantalla de registro y que sea personalizable la app
+							   en función de la empresa? o para incluir una nueva 
+							   empresa contactan conmigo y me dan los datos y yo
+							   registro?
+    - No estamos haciendo un amazon no? son tiendas independientes no?
+    - Incluir prevision de ingresos con la web ("pero yo eso tenia pensado incluirlo en el propio tfg para demostrar que lo que he hecho es beneficio para la gente")
+    - Trabajo futuro: incluir todal a gestion de la tienda (todos los articulos y demas) a la app 
+
+**********************************************************************************************************************************
